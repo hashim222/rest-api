@@ -6,11 +6,12 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_profile_sgymh1')
+        upload_to='images/', default='../default_profile_sgymh1'
+    )
 
     class Meta:
         ordering = ['-created_at']
@@ -19,10 +20,11 @@ class Profile(models.Model):
         return f"{self.owner}'s profile"
 
 
-def create_profile(sender, instance, **kwargs):
-    print('(This is Sender):', sender)
-    print('(This is Instance):', instance)
-    print('(This is Created):', created)
+def create_profile(sender, instance, created, **kwargs):
+    print('this is sender: ', sender)
+    print('this is instance: ', instance)
+    print('this is created: ', created)
+
     if created:
         Profile.objects.create(owner=instance)
 
