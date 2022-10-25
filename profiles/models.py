@@ -21,9 +21,9 @@ class Profile(models.Model):
 
 
 def create_profile(sender, instance, created, **kwargs):
-    print('this is sender: ', sender)
-    print('this is instance: ', instance)
-    print('this is created: ', created)
+    # print('this is sender: ', sender)
+    # print('this is instance: ', instance)
+    # print('this is created: ', created)
 
     if created:
         Profile.objects.create(owner=instance)
