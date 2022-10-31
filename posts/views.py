@@ -35,7 +35,6 @@ class PostList(APIView):
             serializer.save(owner=request.user)
             # print('[ This is save user data: ',
             #       serializer.save(owner=request.user),  ']')
-
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

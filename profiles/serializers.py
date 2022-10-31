@@ -11,7 +11,6 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         return request.user == obj.owner
 
-
     class Meta:
         model = Profile
         fields = [
